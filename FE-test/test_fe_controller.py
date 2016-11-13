@@ -13,7 +13,7 @@ import json
 # Example request URL
 #http://localhost:8090/gsibot/bottle/TalkToBot?userAgent=web_html_v1&bot=Duke&type=json&user=UoUinQKS8YYlFAchLu9R&q=Hola&undefined=
 #http://localhost:8090/gsibot/bottle/TalkToBot?userAgent=web_html_v1&bot=Duke&type=json&user=UoUinQKS8YYlFAchLu9R&q=eres+el+profesor%3F&undefined=
-url_format = "{base}/TalkToBot?userAgent=web_html_v1&bot=Duke&type=json&user={user}&q={query}&undefined="
+url_format = "{base}/AskBot/ask?bot=Dent&type=json&username={user}&question={query}"
 
 def get_test_phrases():
     """
@@ -94,7 +94,7 @@ def main(url):
         else:
             notvalid += 1
             
-    print "Resultado: {valid} Validos, {invalid} No validos".format(valid=str(valid), invalid=str(notvalid))
+    return "Resultado: {valid} Validos, {invalid} No validos".format(valid=str(valid), invalid=str(notvalid))
 
 if __name__ == "__main__":
 
@@ -102,4 +102,4 @@ if __name__ == "__main__":
     if len(sys.argv) == 2:
         url = sys.argv[1]
 
-    main(url)
+    print(main(url))
