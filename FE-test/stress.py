@@ -6,6 +6,7 @@ import time
 import threading
 import string
 import urllib
+import requests
 import codecs
 
 from unidecode import unidecode
@@ -38,8 +39,10 @@ def worker():
     while ( time.time() - start < duration ):
         q = get_rand_line().split(',')[0]
         req = format_url(q, host, agent)
-        response = urllib.urlopen(req).read()
-        time.sleep(5)        
+        response = requests.get(req)
+        if response.status_code != 200:
+            print("Error!!!! {}".format(response.status_code))  
+        time.sleep(random.choice(range(4,7)))        
     
 def main(threads=2):
     ws = []
